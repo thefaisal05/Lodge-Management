@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://localhost/lodge/ -->
+<html lang="en" class="" style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<title>Lodging Reservation Management System</title>
+    <link rel="icon" href="http://localhost/lodge/uploads/1627090380_logo3.jpg">
+    <!-- Google Font: Source Sans Pro -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback"> -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./index_files/all.min.css">
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="./index_files/tempusdominus-bootstrap-4.min.css">
+      <!-- DataTables -->
+  <link rel="stylesheet" href="./index_files/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="./index_files/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="./index_files/buttons.bootstrap4.min.css">
+   <!-- Select2 -->
+  <link rel="stylesheet" href="./index_files/select2.min.css">
+  <link rel="stylesheet" href="./index_files/select2-bootstrap4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="./index_files/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="./index_files/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./index_files/adminlte.css">
+    <link rel="stylesheet" href="./index_files/custom.css">
+    <link rel="stylesheet" href="./index_files/styles.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="./index_files/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="./index_files/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="./index_files/summernote-bs4.min.css">
+     <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="./index_files/bootstrap-4.min.css">
+    <style type="text/css">/* Chart.js */
+      @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
+    </style>
+
+     <!-- jQuery -->
+    <script src="./index_files/jquery.min.js.download"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="./index_files/jquery-ui.min.js.download"></script>
+    <!-- SweetAlert2 -->
+    <script src="./index_files/sweetalert2.min.js.download"></script>
+    <!-- Toastr -->
+    <script src="./index_files/toastr.min.js.download"></script>
+    <script>
+        var _base_url_ = 'http://localhost/lodge/';
+    </script>
+    <script src="./index_files/script.js.download"></script>
+    <script src="./index_files/scripts.js.download"></script>
+
+  </head>  <body class="layout-top-nav" style="height: auto;">
+           <!-- Navigation-->
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav" style="">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="http://localhost/lodge/#page-top"><span class="text-primary">Lodge</span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="http://localhost/lodge/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://localhost/lodge/?page=rooms">Rooms</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://localhost/lodge/#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://localhost/lodge/#contact">Contact</a></li>
+                                                  <li class="nav-item"><a class="nav-link" href="javascript:void(0)" id="login_btn">Login</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </nav>
+<script>
+  $(function(){
+    $('#login_btn').click(function(){
+      uni_modal("","login.php","large")
+    })
+    $('#navbarResponsive').on('show.bs.collapse', function () {
+        $('#mainNav').addClass('navbar-shrink')
+    })
+    $('#navbarResponsive').on('hidden.bs.collapse', function () {
+        if($('body').offset.top == 0)
+          $('#mainNav').removeClass('navbar-shrink')
+    })
+  })
+</script>     
+<style>
+	header.masthead{
+		background-image: url('http://localhost/lodge/uploads/1627108560_lodge.jpg') !important;
+	}
+	header.masthead .container{
+		background:#0000006b;
+	}
+</style>
+<!-- Masthead-->
+<header class="masthead">
+	<div class="container">
+		<div class="masthead-subheading">Welcome To LRMS-PHP- Site</div>
+		<a class="btn btn-primary btn-xl text-uppercase" href="http://localhost/lodge/#home">View Rooms</a>
+	</div>
+</header>
+<!-- Services-->
+<section class="page-section bg-dark" id="home">
+	<div class="container">
+		<h2 class="text-center">Rooms</h2>
+	<div class="d-flex w-100 justify-content-center">
+		<hr class="border-warning" style="border:3px solid" width="15%">
+	</div>
+	<div class="row">
+					<div class="col-md-4 p-4 ">
+				<div class="card w-100 rounded-0">
+					<img class="card-img-top" src="./index_files/lodge_room.jpeg" alt="Room 102" height="200rem" style="object-fit:cover">
+					<div class="card-body">
+					<h5 class="card-title truncate-1 w-100">Room 102</h5><br>
+    				<p class="card-text truncate">Vestibulum ornare ligula a leo imperdiet, sit amet consectetur justo maximus. Phasellus nec arcu vitae diam volutpat eleifend non non sem. Mauris non ante vel lorem aliquet tristique a sit amet odio. Proin et leo non magna volutpat hendrerit sagittis ac ante. Cras auctor risus in lectus porttitor tincidunt. Suspendisse eu purus id ipsum molestie pharetra in at turpis. Quisque venenatis a purus eu facilisis. Nam sit amet condimentum sapien. Etiam egestas dapibus risus. Vestibulum vehicula pharetra nulla, in vestibulum felis. In aliquam orci libero. Fusce ornare consequat metus elementum eleifend.</p>
+					<div class="w-100 d-flex justify-content-end">
+						<a href="http://localhost/lodge/?page=view_room&amp;id=c81e728d9d4c2f636f067f89cc14862c" class="btn btn-sm btn-flat btn-warning">View Room <i class="fa fa-arrow-right"></i></a>
+					</div>
+					</div>
+				</div>
+			</div>
+					<div class="col-md-4 p-4 ">
+				<div class="card w-100 rounded-0">
+					<img class="card-img-top" src="./index_files/hotel-7-stars-china-4.png" alt="Room 101" height="200rem" style="object-fit:cover">
+					<div class="card-body">
+					<h5 class="card-title truncate-1 w-100">Room 101</h5><br>
+    				<p class="card-text truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas imperdiet sodales neque semper egestas. Sed fermentum, felis sed ornare scelerisque, quam nisi convallis augue, non porta leo arcu ac nulla. Nam et blandit ipsum. Mauris pulvinar enim et velit luctus efficitur. Curabitur eu nisi sit amet erat imperdiet suscipit. Praesent vitae gravida sem. Curabitur sed justo ac mauris pellentesque convallis ac nec massa. Aenean eleifend nunc est, et iaculis nunc venenatis sit amet. Mauris fringilla vitae ante vulputate iaculis. Suspendisse gravida vulputate laoreet. Nam aliquam efficitur nisi id malesuada. Aliquam turpis leo, ornare vel pellentesque et, tincidunt eget elit.Cras tellus eros, vehicula quis eros et, auctor interdum nisl. Vestibulum cursus pretium odio a venenatis. Suspendisse id ante cursus, fermentum mi ac, imperdiet purus. Phasellus ut enim et dui maximus tincidunt id sit amet purus. Mauris viverra, erat ut feugiat commodo, sapien felis tincidunt tellus, a euismod nibh est non mi. Aenean blandit augue finibus urna lacinia eleifend. Nunc pretium sollicitudin lacus vitae mollis. Sed porttitor in quam nec sodales. Etiam dignissim augue auctor, faucibus massa id, congue tellus.</p>
+					<div class="w-100 d-flex justify-content-end">
+						<a href="http://localhost/lodge/?page=view_room&amp;id=c4ca4238a0b923820dcc509a6f75849b" class="btn btn-sm btn-flat btn-warning">View Room <i class="fa fa-arrow-right"></i></a>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+	<div class="d-flex w-100 justify-content-end">
+		<a href="http://localhost/lodge/?page=rooms" class="btn btn-flat btn-warning mr-4">Explore More Rooms <i class="fa fa-arrow-right"></i></a>
+	</div>
+	</div>
+</section>
+<!-- About-->
+<section class="page-section" id="about">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">About Us</h2>
+		</div>
+		<div>
+			<div class="card w-100">
+				<div class="card-body">
+					<p>This is a Sample About Content.</p><p><span style="color: rgb(0, 0, 0); font-family: " open="" sans",="" arial,="" sans-serif;="" text-align:="" justify;"="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel molestie ante. Morbi volutpat vestibulum nibh, vitae tempor metus sodales ac. Praesent et ornare lorem. Nullam id sem sed dolor feugiat finibus eu imperdiet erat. Suspendisse sed est eu enim lacinia efficitur eu eget sem. Curabitur feugiat, ipsum vel eleifend tincidunt, lacus metus tristique sem, non vehicula purus ipsum eget magna. Phasellus feugiat molestie nibh, sit amet elementum nulla volutpat sit amet. Integer a consequat metus, eget consectetur urna. Phasellus sagittis tincidunt egestas.</span></p><p><span style="color: rgb(0, 0, 0); font-family: " open="" sans",="" arial,="" sans-serif;="" text-align:="" justify;"="">Test 123<br></span><br></p>				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Contact-->
+<section class="page-section" id="contact">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">Contact Us</h2>
+			<h3 class="section-subheading text-muted">Send us a message for inquiries.</h3>
+		</div>
+		<!-- * * * * * * * * * * * * * * *-->
+		<!-- * * SB Forms Contact Form * *-->
+		<!-- * * * * * * * * * * * * * * *-->
+		<!-- This form is pre-integrated with SB Forms.-->
+		<!-- To make this form functional, sign up at-->
+		<!-- https://startbootstrap.com/solution/contact-forms-->
+		<!-- to get an API token!-->
+		<form id="contactForm">
+			<div class="row align-items-stretch mb-5">
+				<div class="col-md-6">
+					<div class="form-group">
+						<!-- Name input-->
+						<input class="form-control" id="name" name="name" type="text" placeholder="Your Name *" required="" fdprocessedid="1uh8f">
+					</div>
+					<div class="form-group">
+						<!-- Email address input-->
+						<input class="form-control" id="email" name="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" fdprocessedid="8xvhz">
+					</div>
+					<div class="form-group mb-md-0">
+						<input class="form-control" id="subject" name="subject" type="subject" placeholder="Subject *" required="" fdprocessedid="ivkhfq">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group form-group-textarea mb-md-0">
+						<!-- Message input-->
+						<textarea class="form-control" id="message" name="message" placeholder="Your Message *" required=""></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" fdprocessedid="ovstaq">Send Message</button></div>
+		</form>
+	</div>
+</section>
+<script>
+$(function(){
+	$('#contactForm').submit(function(e){
+		e.preventDefault()
+		$.ajax({
+			url:_base_url_+"classes/Master.php?f=save_inquiry",
+			method:"POST",
+			data:$(this).serialize(),
+			dataType:"json",
+			error:err=>{
+				console.log(err)
+				alert_toast("an error occured",'error')
+				end_loader()
+			},
+			success:function(resp){
+				if(typeof resp == 'object' && resp.status == 'success'){
+					alert_toast("Inquiry sent",'success')
+					$('#contactForm').get(0).reset()
+				}else{
+					console.log(resp)
+					alert_toast("an error occured",'error')
+					end_loader()
+				}
+			}
+		})
+	})
+})
+</script>       <script>
+        $(function(){
+          if($('header.masthead').lengt <= 0)
+            $('#mainNav').addClass('navbar-shrink')
+        })
+      </script>
+      <script>
+  $(document).ready(function(){
+    $('#p_use').click(function(){
+      uni_modal("Privacy Policy","policy.php","mid-large")
+    })
+     window.viewer_modal = function($src = ''){
+      start_loader()
+      var t = $src.split('.')
+      t = t[1]
+      if(t =='mp4'){
+        var view = $("<video src='"+$src+"' controls autoplay></video>")
+      }else{
+        var view = $("<img src='"+$src+"' />")
+      }
+      $('#viewer_modal .modal-content video,#viewer_modal .modal-content img').remove()
+      $('#viewer_modal .modal-content').append(view)
+      $('#viewer_modal').modal({
+              show:true,
+              backdrop:'static',
+              keyboard:false,
+              focus:true
+            })
+            end_loader()  
+
+  }
+    window.uni_modal = function($title = '' , $url='',$size=""){
+        start_loader()
+        $.ajax({
+            url:$url,
+            error:err=>{
+                console.log()
+                alert("An error occured")
+            },
+            success:function(resp){
+                if(resp){
+                    $('#uni_modal .modal-title').html($title)
+                    $('#uni_modal .modal-body').html(resp)
+                    if($size != ''){
+                        $('#uni_modal .modal-dialog').addClass($size+'  modal-dialog-centered')
+                    }else{
+                        $('#uni_modal .modal-dialog').removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
+                    }
+                    $('#uni_modal').modal({
+                      show:true,
+                      backdrop:'static',
+                      keyboard:false,
+                      focus:true
+                    })
+                    end_loader()
+                }
+            }
+        })
+    }
+    window._conf = function($msg='',$func='',$params = []){
+       $('#confirm_modal #confirm').attr('onclick',$func+"("+$params.join(',')+")")
+       $('#confirm_modal .modal-body').html($msg)
+       $('#confirm_modal').modal('show')
+    }
+  })
+</script>
+<!-- Footer-->
+<footer class="footer py-4">
+	<div class="container">
+		<div class="row align-items-center">
+			
+		</div>
+	</div>
+</footer>
+
+   
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="./index_files/bootstrap.bundle.min.js.download"></script>
+    <!-- ChartJS -->
+    <script src="./index_files/Chart.min.js.download"></script>
+    <!-- Sparkline -->
+    <script src="./index_files/sparkline.js.download"></script>
+    <!-- Select2 -->
+    <script src="./index_files/select2.full.min.js.download"></script>
+    <!-- JQVMap -->
+    <script src="./index_files/jquery.vmap.min.js.download"></script>
+    <script src="./index_files/jquery.vmap.usa.js.download"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="./index_files/jquery.knob.min.js.download"></script>
+    <!-- daterangepicker -->
+    <script src="./index_files/moment.min.js.download"></script>
+    <script src="./index_files/daterangepicker.js.download"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="./index_files/tempusdominus-bootstrap-4.min.js.download"></script>
+    <!-- Summernote -->
+    <script src="./index_files/summernote-bs4.min.js.download"></script>
+    <script src="./index_files/jquery.dataTables.min.js.download"></script>
+    <script src="./index_files/dataTables.bootstrap4.min.js.download"></script>
+    <script src="./index_files/dataTables.responsive.min.js.download"></script>
+    <script src="./index_files/responsive.bootstrap4.min.js.download"></script>
+    <!-- overlayScrollbars -->
+    <!-- <script src="http://localhost/lodge/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+    <!-- AdminLTE App -->
+    <script src="./index_files/adminlte.js.download"></script>
+    <div class="daterangepicker ltr show-ranges opensright">
+      <div class="ranges">
+        <ul>
+          <li data-range-key="Today">Today</li>
+          <li data-range-key="Yesterday">Yesterday</li>
+          <li data-range-key="Last 7 Days">Last 7 Days</li>
+          <li data-range-key="Last 30 Days">Last 30 Days</li>
+          <li data-range-key="This Month">This Month</li>
+          <li data-range-key="Last Month">Last Month</li>
+          <li data-range-key="Custom Range">Custom Range</li>
+        </ul>
+      </div>
+      <div class="drp-calendar left">
+        <div class="calendar-table"></div>
+        <div class="calendar-time" style="display: none;"></div>
+      </div>
+      <div class="drp-calendar right">
+        <div class="calendar-table"></div>
+        <div class="calendar-time" style="display: none;"></div>
+      </div>
+      <div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div>
+    </div>
+    <div class="jqvmap-label" style="display: none; left: 1093.83px; top: 394.361px;">Idaho</div>      <div class="modal fade text-dark" id="confirm_modal" role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+      </div>
+      <div class="modal-body">
+        <div id="delete_content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="confirm" onclick="">Continue</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade text-dark rounded-0" id="uni_modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-md modal-dialog-centered large" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+        <h5 class="modal-title"></h5>
+      </div>
+      <div class="modal-body"><style>
+    #uni_modal .modal-content>.modal-footer,#uni_modal .modal-content>.modal-header{
+        display:none;
+    }
+</style>
+<div class="container-fluid">
+    <h3 class="float-left">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" fdprocessedid="fj5zmw">
+          <span aria-hidden="true">×</span>
+        </button>
+    </h3>
+    <div class="row">
+        <div class="col-lg-5 border-right">
+            <h3 class="text-center">Login</h3>
+            <hr>
+            <form action="http://localhost/lodge/" id="login-form"><div class="alert alert-danger err-msg">Incorrect Credentials.</div>
+                <div class="form-group">
+                    <label for="" class="control-label">Username</label>
+                    <input type="text" class="form-control form" name="username" required="" fdprocessedid="wpepzh">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Password</label>
+                    <input type="password" class="form-control form" name="password" required="" fdprocessedid="70exxh">
+                </div>
+                <div class="form-group d-flex justify-content-end">
+                    <button class="btn btn-primary btn-flat" fdprocessedid="h6ftni">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-7">
+        <h3 class="text-center">Create New Account</h3>
+        <hr class="border-primary">
+            <form action="http://localhost/lodge/" id="registration">
+                <div class="form-group">
+                    <label for="" class="control-label">Firstname</label>
+                    <input type="text" class="form-control form-control-sm form" name="firstname" required="" fdprocessedid="dq93id">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Lastname</label>
+                    <input type="text" class="form-control form-control-sm form" name="lastname" required="" fdprocessedid="112xva">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Email</label>
+                    <input type="email" class="form-control form-control-sm form" name="email" required="" fdprocessedid="324qz7">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Contact #</label>
+                    <input type="text" class="form-control form-control-sm form" name="contact" required="" fdprocessedid="beqmp">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Username</label>
+                    <input type="text" class="form-control form-control-sm form" name="username" required="" fdprocessedid="en7ts">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Password</label>
+                    <input type="password" class="form-control form-control-sm form" name="password" required="" fdprocessedid="mtm3ns">
+                </div>
+                <div class="form-group d-flex justify-content-end">
+                    <button class="btn btn-primary btn-flat" fdprocessedid="dr4ppn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $('#registration').submit(function(e){
+            e.preventDefault();
+            start_loader()
+            if($('.err-msg').length > 0)
+                $('.err-msg').remove();
+            $.ajax({
+                url:_base_url_+"classes/Master.php?f=register",
+                method:"POST",
+                data:$(this).serialize(),
+                dataType:"json",
+                error:err=>{
+                    console.log(err)
+                    alert_toast("an error occured",'error')
+                    end_loader()
+                },
+                success:function(resp){
+                    if(typeof resp == 'object' && resp.status == 'success'){
+                        alert_toast("Account succesfully registered",'success')
+                        setTimeout(function(){
+                            location.reload()
+                        },2000)
+                    }else if(resp.status == 'failed' && !!resp.msg){
+                        var _err_el = $('<div>')
+                            _err_el.addClass("alert alert-danger err-msg").text(resp.msg)
+                        $('#registration').prepend(_err_el)
+                        end_loader()
+                        
+                    }else{
+                        console.log(resp)
+                        alert_toast("an error occured",'error')
+                        end_loader()
+                    }
+                }
+            })
+        })
+        $('#login-form').submit(function(e){
+            e.preventDefault();
+            start_loader()
+            if($('.err-msg').length > 0)
+                $('.err-msg').remove();
+            $.ajax({
+                url:_base_url_+"classes/Login.php?f=login_user",
+                method:"POST",
+                data:$(this).serialize(),
+                dataType:"json",
+                error:err=>{
+                    console.log(err)
+                    alert_toast("an error occured",'error')
+                    end_loader()
+                },
+                success:function(resp){
+                    if(typeof resp == 'object' && resp.status == 'success'){
+                        alert_toast("Login Successfully",'success')
+                        setTimeout(function(){
+                            location.reload()
+                        },2000)
+                    }else if(resp.status == 'incorrect'){
+                        var _err_el = $('<div>')
+                            _err_el.addClass("alert alert-danger err-msg").text("Incorrect Credentials.")
+                        $('#login-form').prepend(_err_el)
+                        end_loader()
+                        
+                    }else{
+                        console.log(resp)
+                        alert_toast("an error occured",'error')
+                        end_loader()
+                    }
+                }
+            })
+        })
+    })
+</script></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="submit" onclick="$(&#39;#uni_modal form&#39;).submit()">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade text-dark" id="uni_modal_right" role="dialog">
+    <div class="modal-dialog modal-full-height  modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="fa fa-arrow-right"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade text-dark" id="viewer_modal" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+              <button type="button" class="btn-close" data-dismiss="modal"><span class="fa fa-times"></span></button>
+              <img src="http://localhost/lodge/" alt="">
+      </div>
+    </div>
+  </div> 
+  
+
+<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
